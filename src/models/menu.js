@@ -63,6 +63,18 @@ const menuModel = {
                 }
             })
         })
+    },
+    sortMenuByNameASC: () => {
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.nama_produk ASC`
+        return new Promise((resolve, reject)=>{
+            db.query(queryString, (err,data)=>{
+                if (!err) {
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
+        })
     }
 }
 module.exports = menuModel;
