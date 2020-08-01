@@ -8,6 +8,7 @@ menuRouter.get('/', menuController.getAllMenu)
 menuRouter.post('/', menuController.postMenu)
 menuRouter.patch('/', menuController.patchMenu)
 menuRouter.delete('/', menuController.deleteMenu)
+menuRouter.get('/search/:nama_produk', menuController.getMenuByName)
 
 
 module.exports = menuRouter
