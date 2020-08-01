@@ -40,7 +40,8 @@ const menuModel = {
             })
         })
     },
-    deleteMenu: (id) => {
+    deleteMenu: (body) => {
+        const {id} = body
         return new Promise((resolve, reject) => {
             const queryString = `DELETE FROM produk WHERE id=${id}`
             db.query(queryString, (err, data) => {
@@ -66,6 +67,42 @@ const menuModel = {
     },
     sortMenuByNameASC: () => {
         const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.nama_produk ASC`
+        return new Promise((resolve, reject)=>{
+            db.query(queryString, (err,data)=>{
+                if (!err) {
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    },
+    sortMenuByKategoriASC: () => {
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.id_kategori ASC`
+        return new Promise((resolve, reject) => {
+            db.query(queryString, (err, data)=> {
+                if (!err) {
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    },
+    sortMenuByPriceDESC: () => {
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.harga_produk DESC`
+        return new Promise((resolve, reject) => {
+            db.query(queryString, (err, data)=> {
+                if (!err) {
+                    resolve(data)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    },
+    sortLatestMenuDESC: () => {
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.added_at DESC`
         return new Promise((resolve, reject)=>{
             db.query(queryString, (err,data)=>{
                 if (!err) {

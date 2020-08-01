@@ -48,6 +48,30 @@ const menuController = {
         }).catch((err)=>{
             res.json(err)
         })
+    },
+    sortMenuByKategoriASC: (_,res) => {
+        menuModel.sortMenuByKategoriASC()
+        .then((data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+    },
+    sortMenuByPriceDESC: (_,res) => {
+        menuModel.sortMenuByPriceDESC()
+        .then((data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+    },
+    sortLatestMenuDESC: (_,res) => {
+        menuModel.sortLatestMenuDESC()
+        .then((data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
     }
 }
 module.exports = menuController;
