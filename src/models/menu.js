@@ -30,8 +30,8 @@ const menuModel = {
     patchMenu: (body) => {
         const { id, nama_produk, gambar_produk, harga_produk, id_kategori } = body
         return new Promise((resolve, reject) => {
-            const queryString = `UPDATE produk SET nama_produk="${nama_produk}", gambar_produk="${gambar_produk}", harga_produk="${harga_produk}", id_kategori=${id_kategori} WHERE id=${id}`
-            db.query(queryString, (err, data) => {
+            const queryString = `UPDATE produk SET nama_produk=?, gambar_produk=?, harga_produk=?, id_kategori=? WHERE id=${id}`
+            db.query(queryString, [nama_produk, gambar_produk, harga_produk, id_kategori, id], (err,  data) => {
                 if (!err) {
                     resolve(data)
                 } else {
