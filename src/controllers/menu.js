@@ -34,7 +34,7 @@ const menuController = {
             })
     },
     getMenuByName: (req, res) => {
-        menuModel.getMenuByName(req.params.nama_produk)
+        menuModel.getMenuByName(req.query.nama_produk)
             .then((data) => {
                 res.json(data)
             }).catch((err)=>{

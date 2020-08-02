@@ -6,7 +6,7 @@ const productMiddleware = (req, res, next) => {
     const requestMethod = req.method;
     const isParamsEmpty = _.isEmpty(req.params);
     const isBodyEmpty = _.isEmpty(req.body);
-    if (requestMethod === "GET" && (requestPath === "/menu" || requestPath === "/insertMenu" || requestPath === "/updateMenu" || requestPath === "/deleteMenu" ||  requestPath === "/sortMenuByNameASC" || requestPath === "/sortMenuByPriceDESC" || requestPath === "/sortLatestMenuASC" || requestPath === "/sortMenuByKategoriASC" || requestPath === "/search/:nama_produk")) {
+    if (requestMethod === "GET" && (requestPath === "/" ||   requestPath === "/sortMenuByNameASC" || requestPath === "/sortMenuByPriceDESC" || requestPath === "/sortLatestMenuASC" || requestPath === "/sortMenuByKategoriASC" || requestPath === "/search")) {
         if (requestPath === "/search" && isParamsEmpty) {
             const errorMsg = "request params cannot be blank";
             responseForm.error(res, errorMsg);
