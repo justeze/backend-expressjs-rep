@@ -70,8 +70,8 @@ const menuController = {
         .then((data)=>{
             res.json(data)
         }).catch((err)=>{
-            res.json(err)
-        })
+            res.json(err)}
+        )
     }
 }
 module.exports = menuController;

@@ -3,7 +3,7 @@ const db = require("../configs/dbMySql")
 const menuModel = {
     getAllMenu: () => {
         return new Promise((resolve, reject) => {
-            const queryString = "SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id";
+            const queryString = "SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id";
             db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data);
@@ -28,9 +28,9 @@ const menuModel = {
         })
     },
     patchMenu: (body) => {
-        const { id, nama_produk, harga_produk, id_kategori } = body
+        const { id, nama_produk, gambar_produk, harga_produk, id_kategori } = body
         return new Promise((resolve, reject) => {
-            const queryString = `UPDATE produk SET nama_produk="${nama_produk}", harga_produk="${harga_produk}", id_kategori=${id_kategori} WHERE id=${id}`
+            const queryString = `UPDATE produk SET nama_produk="${nama_produk}", gambar_produk="${gambar_produk}", harga_produk="${harga_produk}", id_kategori=${id_kategori} WHERE id=${id}`
             db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
@@ -41,7 +41,7 @@ const menuModel = {
         })
     },
     deleteMenu: (body) => {
-        const {id} = body
+        const { id } = body
         return new Promise((resolve, reject) => {
             const queryString = `DELETE FROM produk WHERE id=${id}`
             db.query(queryString, (err, data) => {
@@ -54,8 +54,9 @@ const menuModel = {
         })
     },
     getMenuByName: (nama_produk) => {
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id WHERE produk.nama_produk=?`
         return new Promise((resolve, reject) => {
-            const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id WHERE produk.nama_produk=?`
+
             db.query(queryString, [nama_produk], (err, data) => {
                 if (!err) {
                     resolve(data);
@@ -66,9 +67,9 @@ const menuModel = {
         })
     },
     sortMenuByNameASC: () => {
-        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.nama_produk ASC`
-        return new Promise((resolve, reject)=>{
-            db.query(queryString, (err,data)=>{
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.nama_produk ASC`
+        return new Promise((resolve, reject) => {
+            db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
                 } else {
@@ -78,9 +79,9 @@ const menuModel = {
         })
     },
     sortMenuByKategoriASC: () => {
-        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.id_kategori ASC`
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.id_kategori ASC`
         return new Promise((resolve, reject) => {
-            db.query(queryString, (err, data)=> {
+            db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
                 } else {
@@ -90,9 +91,9 @@ const menuModel = {
         })
     },
     sortMenuByPriceDESC: () => {
-        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.harga_produk DESC`
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.harga_produk DESC`
         return new Promise((resolve, reject) => {
-            db.query(queryString, (err, data)=> {
+            db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
                 } else {
@@ -102,9 +103,9 @@ const menuModel = {
         })
     },
     sortLatestMenuDESC: () => {
-        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.added_at DESC`
-        return new Promise((resolve, reject)=>{
-            db.query(queryString, (err,data)=>{
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id ORDER BY produk.added_at DESC`
+        return new Promise((resolve, reject) => {
+            db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
                 } else {
