@@ -54,9 +54,8 @@ const menuModel = {
         })
     },
     getMenuByName: (nama_produk) => {
-        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id WHERE produk.nama_produk=?`
+        const queryString = `SELECT produk.id, produk.nama_produk, produk.harga_produk, produk.gambar_produk, kategori.kategori FROM produk JOIN kategori ON produk.id_kategori=kategori.id WHERE produk.nama_produk LIKE "%${nama_produk}%"`
         return new Promise((resolve, reject) => {
-
             db.query(queryString, [nama_produk], (err, data) => {
                 if (!err) {
                     resolve(data);

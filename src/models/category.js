@@ -25,10 +25,10 @@ const menuModel = {
             })
         })
     },
-    patchMenu: (body) => {
+    patchCategory: (body) => {
         const { id, kategori } = body
         return new Promise((resolve, reject) => {
-            const queryString = `UPDATE produk SET kategori="${kategori}" WHERE id=${id}`
+            const queryString = `UPDATE kategori SET kategori="${kategori}" WHERE id=${id}`
             db.query(queryString, (err, data) => {
                 if (!err) {
                     resolve(data)
@@ -38,7 +38,7 @@ const menuModel = {
             })
         })
     },
-    deleteMenu: (body) => {
+    deleteCategory: (body) => {
         const { id } = body
         return new Promise((resolve, reject) => {
             const queryString = `DELETE FROM kategori WHERE id=${id}`
