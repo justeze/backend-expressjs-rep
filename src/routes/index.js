@@ -11,6 +11,4 @@ indexRouter.use('/transaksi', transactionRouter)
 indexRouter.use('/histori', historyRouter)
 // indexRouter.use('/histori', historyRouter)
 
-
-
 module.exports = indexRouter
