@@ -9,6 +9,6 @@ const indexRouter = express.Router()
 indexRouter.use('/', menuRouter)
 indexRouter.use('/transaksi', transactionRouter)
 indexRouter.use('/histori', historyRouter)
-// indexRouter.use('/histori', historyRouter)
+
 
 module.exports = indexRouter
